@@ -1,3 +1,40 @@
+// Core style rules for basic building blocks. Contains mostly white
+// spaces, headings flexboxes, grids et cetera.
+
+// Character encoding
 @charset 'utf-8'
 
-@debug 'Hello, World!'
+// Import of other Sass files
+@use '../config.sass' as config
+
+// All white space classes
+@for $i from 1 through 50
+	
+	// Define a size for each white space class (with a step of 5,
+	// given the loop goes from 1 through 50, this will go to a
+	// maximum size of 250).
+	$size: $i * 5
+
+	// Define a unit to use in each white space class.
+	$unit: config.$default_unit
+
+	// Regular white space
+	.ws#{$size}
+		height: #{$size}#{$unit}
+
+	// Horizontal white space
+	.hws#{$size}
+		width: #{$size}#{$unit}
+
+// All heading classes
+@for $i from 1 through 6
+
+	// Define a font size for the current heading.
+	$size: (7 - $i) * 12
+
+	// Define a unit to use in each heading class.
+	$unit: 'pt'
+	
+	// Define a heading class.
+	.h#{$i}
+		font: normal normal 400 #{$size}#{$unit}/normal #{config.$default_font_family}
