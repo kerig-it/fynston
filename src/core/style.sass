@@ -6,6 +6,7 @@
 
 // Import of other Sass files
 @use '../config.sass' as config
+@use 'defaults.sass'
 
 // All white space classes
 @for $i from 1 through 50
@@ -38,3 +39,45 @@
 	// Define a heading class.
 	.h#{$i}
 		font: normal normal 400 #{$size}#{$unit}/normal #{config.$default_font_family}
+
+// Define flexbox classes
+.flex, .i-flex
+	&.equal > *
+		flex: 1 1 100%
+
+.flex
+	display: flex
+
+.i-flex
+	display: inline-flex
+
+// Define lists of flexbox rule property values.
+$aligned_items: ['center' 'flex-end' 'flex-start' 'stretch']
+$flex_directions: ['column' 'flex' 'row']
+$justified_contents: ['center' 'flex-end' 'flex-start' 'space-around' 'space-between' 'space-evenly']
+
+// All aligned items classes
+@each $aligned_item in $aligned_items
+	.a-#{$aligned_item}
+		align-items: #{$aligned_item}
+
+// All flex directions classes
+@each $flex_direction in $flex_directions
+
+	// Is the current flex direction not 'flex'?
+	@if $flex_direction != 'flex'
+		.d-#{$flex_direction}
+			flex-direction: #{$flex_direction}
+
+	@else
+		.d-flex
+			flex-direction: row
+
+			@media screen and (max-width: #{config.$mobile_screen_width}#{config.$default_unit})
+				.d-flex
+					flex-direction: column
+
+// All justified contents classes
+@each $justified_content in $justified_contents
+	.j-#{$justified_content}
+		justify-content: #{$justified_content}
