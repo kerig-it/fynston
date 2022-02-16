@@ -1,0 +1,24 @@
+{
+	"name": "web-tmpl",
+	"version": "0.0.0-alpha.0",
+	"description": "A collection of compiled Sass templates for building UIs fast.",
+	"scripts": {
+		"test": "echo \"No testing is available for this repository.\" && exit 0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kerig-it/web-tmpl.git"
+	},
+	"keywords": [
+		"template",
+		"templates",
+		"sass",
+		"css"
+	],
+	"author": "kerig",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kerig-it/web-tmpl/issues"
+	},
+	"homepage": "https://github.com/kerig-it/web-tmpl#readme"
+}
