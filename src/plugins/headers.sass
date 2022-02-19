@@ -2,10 +2,31 @@
 
 header
 	&.desktop
-		background-color: #000
-		color: #ffff
+		align-items: center
+		display: flex
+		flex-direction: row
+		justify-content: space-between
 		left: 0
-		padding: 20px
 		position: fixed
 		right: 0
 		top: 0
+
+		.logo
+			height: 24px
+			width: 24px
+
+		.nav
+			.btn
+				align-items: center
+				display: flex
+				flex-direction: row
+				justify-content: center
+
+				.ico
+					margin: 0 5px
+
+				.txt
+					margin: 0 5px
+
+	.logo
+		background: none
