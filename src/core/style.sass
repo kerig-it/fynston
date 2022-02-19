@@ -82,3 +82,12 @@ $justified_contents: ['center' 'flex-end' 'flex-start' 'space-around' 'space-bet
 @each $justified_content in $justified_contents
 	.j-#{$justified_content}
 		justify-content: #{$justified_content}
+
+.table
+	display: table
+
+	.row
+		display: table-row
+
+		.heading, .cell
+			display: table-cell
