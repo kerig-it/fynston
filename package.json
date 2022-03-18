@@ -3,6 +3,7 @@
 	"version": "0.0.0-alpha.0",
 	"description": "A collection of compiled Sass templates for building UIs fast.",
 	"scripts": {
+		"start": "sass -w src:dist",
 		"test": "echo \"No testing is available for this repository.\""
 	},
 	"repository": {
@@ -19,5 +20,8 @@
 	"bugs": {
 		"url": "https://github.com/kerig-it/web-tmpl/issues"
 	},
-	"homepage": "https://github.com/kerig-it/web-tmpl#readme"
+	"homepage": "https://github.com/kerig-it/web-tmpl#readme",
+	"dependencies": {
+		"sass": "^1.49.9"
+	}
 }
