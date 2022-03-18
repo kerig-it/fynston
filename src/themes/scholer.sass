@@ -1,0 +1,126 @@
+// Theme for the Scholer client.
+
+@charset 'utf-8'
+
+@font-face
+	font-family: 'regular'
+	src: url('https://cdn.kerig.ee/assets/font/Roboto/Roboto-Regular.ttf')
+
+@font-face
+	font-family: 'medium'
+	src: url('https://cdn.kerig.ee/assets/font/Roboto/Roboto-Medium.ttf')
+
+@font-face
+	font-family: 'bold'
+	src: url('https://cdn.kerig.ee/assets/font/Roboto/Roboto-Bold.ttf')
+
+html
+	body
+		#content
+			font: normal normal 400 14pt/normal 'regular', sans-serif
+			user-select: none
+
+			@for $i from 1 through 6
+				.h#{$i}
+					font-family: 'bold'
+
+			.table
+				border: 1px solid #dddf
+				border-radius: 10px
+
+				.row
+					&:nth-child(even)
+						background-color: #eeef
+
+					.heading, .cell
+						padding: 15px
+
+					.heading
+						font-family: 'medium'
+
+			header
+				&.menu
+					align-items: flex-start
+					background-color: #ffff
+					bottom: 0
+					flex-direction: column
+					left: 0
+					outline: 1px solid #0003
+					padding: 25px 0
+					top: 0
+					right: auto
+					z-index: 9000
+
+					.logo
+						height: 45px
+						width: 45px
+
+					.nav
+						margin: 0 25px 0 0
+						width: 100%
+
+						.btn
+							background-color: transparent
+							border-radius: 0 10px 10px 0
+							color: #888f
+							cursor: pointer
+							justify-content: flex-start
+							margin: 3px 0
+							padding: 10px 75px 6.5px 0
+							transition: none 150ms cubic-bezier(0.25, 0.1, 0.25, 1) 0ms
+							transition-property: background, color
+
+							&:hover, &.select
+								background-color: #bbb3
+								color: #000f
+
+							&:hover
+								cursor: pointer
+
+							&.select
+								cursor: default
+
+								&:hover
+									outline: 1px solid #eeef
+								
+								.ico, .txt
+									animation: expand 150ms cubic-bezier(0.25, 0.1, 0.25, 1) 50ms 1 normal forwards running
+
+									@keyframes expand
+										from
+											transform: translate(0)
+
+										to
+											transform: translate(12.5px, 0)
+
+							.ico
+								font-size: 15pt
+								margin: 0 15px 0 50px
+								vertical-align: middle
+
+							.txt
+								font-family: 'medium'
+								font-size: 13pt
+								margin: 0 0 3.5px 0
+
+				.logo
+					background-image: url('https://scholer.kerig.ee/d375af7b483b62d0f8ea.png')
+
+			main
+				section
+					padding: 50px
+
+			footer
+				//
+
+			.btn
+				align-items: center
+				display: flex
+				flex-direction: row
+				justify-content: center
+
+				.ico
+					margin: 0 5px
+
+				.txt
+					margin: 0 5px
