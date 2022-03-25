@@ -37,7 +37,7 @@
 	$unit: 'pt'
 	
 	// Define a heading class.
-	.h#{$i}
+	h#{$i}, .h#{$i}
 		font: normal normal 400 #{$size}#{$unit}/normal #{config.$default_font_family}
 		margin: 25px 0 15px 0
 
@@ -74,20 +74,19 @@ $justified_contents: ['center' 'flex-end' 'flex-start' 'space-around' 'space-bet
 		.d-flex
 			flex-direction: row
 
-			@media screen and (max-width: #{config.$mobile_screen_width}#{config.$default_unit})
-				.d-flex
-					flex-direction: column
+			@media screen and (max-width: #{config.$mobile_screen_width}px)
+				flex-direction: column
 
 // All justified contents classes
 @each $justified_content in $justified_contents
 	.j-#{$justified_content}
 		justify-content: #{$justified_content}
 
-.table
+table, .table
 	display: table
 
-	.row
+	> tr, > .row
 		display: table-row
 
-		.heading, .cell
+		> th, > td, > .header, > .cell
 			display: table-cell
