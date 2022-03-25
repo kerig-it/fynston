@@ -2,8 +2,7 @@
 // is used by the `style.sass` style sheet in this directory. By
 // default, it uses the default theme.
 
-// Load default theme.
-@use '../themes/default.sass'
+@use '../config.sass' as config
 
 html
 	scroll-behavior: smooth
@@ -13,3 +12,28 @@ body, #body
 
 section, .section
 	padding: 100px
+
+	&.full
+		align-items: flex-start
+		display: flex
+		min-height: 100vh
+		justify-content: flex-start
+		padding: 0
+
+		> *
+			flex: 1 1 100%
+			padding: 100px
+
+	&.centre
+		align-items: center
+		justify-content: center
+
+@media screen and (max-width: #{config.$mobile_screen_width}px)
+	section, .section
+		padding: 25px
+		padding-top: 75px
+
+		&.full
+			> *
+				padding: 25px
+				padding-top: 75px
