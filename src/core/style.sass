@@ -1,8 +1,16 @@
-// Core style rules for basic building blocks. Contains mostly white
-// spaces, headings flexboxes, grids et cetera.
+// This is the core style sheet for basic page building components
+// (think of white spaces, headings, tables, flexboxes et cetera).
+//
+// Refer to the README in this repository's root for more
+// information.
+//
+// GitHub: https://github.com/kerig-it/fynston
+//
+// Made with ❤️ by Kerig.
 
-// Character encoding
 @charset 'utf-8'
+
+@use 'sass:math'
 
 // Import of other Sass files
 @use '../config.sass' as config
@@ -10,83 +18,110 @@
 
 // All white space classes
 @for $i from 1 through 50
-	
-	// Define a size for each white space class (with a step of 5,
-	// given the loop goes from 1 through 50, this will go to a
-	// maximum size of 250).
+
+	// A size for each white space class (with a step of 5, given the
+	// loop goes from 1 through 50, this will go to a maximum size of
+	// 250)
 	$size: $i * 5
 
-	// Define a unit to use in each white space class.
+	// Default unit to use in each white space class
 	$unit: config.$default_unit
 
-	// Regular white space
-	.ws#{$size}
-		height: #{$size}#{$unit}
+	// Set the display property for all white space classes.
+	.ws#{$size}, .hws#{$size}, .fws#{$size}, .fhws#{$size}
+		display: block
 
-	// Horizontal white space
-	.hws#{$size}
+	// Regular white space (+ its flexible counterpart)
+	.ws#{$size}, .fws#{$size}
+		height: #{$size}#{$unit}
+		width: unset
+
+	// Horizontal white space (+ its flexible counterpart)
+	.hws#{$size}, .fhws#{$size}
+		height: unset
 		width: #{$size}#{$unit}
 
-// All heading classes
+	@media screen and (max-width: #{config.$mobile_screen_width}#{config.$default_unit})
+		// Mobile version of the regular white space class
+		.fws#{$size}
+			height: unset
+			width: #{$size}#{$unit}
+
+		// Mobile version of the horizontal white space class
+		.fhws#{$size}
+			height: #{$size}#{$unit}
+			width: unset
+
+// Heading classes
 @for $i from 1 through 6
 
-	// Define a font size for the current heading.
-	$size: (12 - $i) * 4
-
-	// Define a unit to use in each heading class.
-	$unit: 'pt'
+	// Define a font size for the current heading. The formula used
+	// here is the following quadratic mathematical function:
+	// f(x) = (45.6 / 49) * (x - 6)^2 + 13.6
+	// (Formula structure: y = ax^2 + c)
+	// It gives a nice curve for the x values (0, 7).
+	$size: math.div(45.6, 49) * math.pow(($i - 6), 2) + 13.6
 	
-	// Define a heading class.
+	// Heading tag, class
 	h#{$i}, .h#{$i}
-		font: normal normal 400 #{$size}#{$unit}/normal #{config.$default_font_family}
+		font-family: config.$default_font_family
+		font-size: #{$size}#{config.$default_unit}
+		font-style: normal
+		font-variant-alternates: normal
+		font-variant-caps: normal
+		font-variant-east-asian: normal
+		font-variant-ligatures: normal
+		font-variant-numeric: normal
+		font-variant-position: normal
+		font-weight: 400
+		line-height: normal
 		margin: 25px 0 15px 0
+		padding: 0
 
-// Define flexbox classes
-.flex, .i-flex
+// Flexbox classes
+.flex, .inline-flex
 	&.equal > *
-		flex: 1 1 100%
+		flex-grow: 1
+		flex-shrink: 1
+		flex-basis: 100%
 
 .flex
 	display: flex
 
-.i-flex
+.inline-flex
 	display: inline-flex
 
-// Define lists of flexbox rule property values.
-$aligned_items: ['center' 'flex-end' 'flex-start' 'stretch']
-$flex_directions: ['column' 'flex' 'row']
-$justified_contents: ['center' 'flex-end' 'flex-start' 'space-around' 'space-between' 'space-evenly']
+// Lists of flexbox rule property values
+$align_items: [ 'center', 'flex-end', 'flex-start', 'stretch' ]
+$flex_direction: [ 'column', 'flex', 'row' ]
+$justify_content: [ 'center', 'flex-end', 'flex-start', 'space-around', 'space-between', 'space-evenly' ]
 
-// All aligned items classes
-@each $aligned_item in $aligned_items
-	.a-#{$aligned_item}
-		align-items: #{$aligned_item}
+// All align-items classes
+@each $value in $align_items
+	.align-#{$value}
+		align-items: #{$value}
 
-// All flex directions classes
-@each $flex_direction in $flex_directions
-
-	// Is the current flex direction not 'flex'?
-	@if $flex_direction != 'flex'
-		.d-#{$flex_direction}
-			flex-direction: #{$flex_direction}
-
-	@else
-		.d-flex
+// All flex-direction classes
+@each $value in $flex_direction
+	.direction-#{$value}
+		@if $value != 'flex'
+			flex-direction: #{$value}
+		@else
 			flex-direction: row
-
-			@media screen and (max-width: #{config.$mobile_screen_width}px)
+			@media screen and (max-width: #{config.$mobile_screen_width}#{config.$default_unit})
 				flex-direction: column
 
-// All justified contents classes
-@each $justified_content in $justified_contents
-	.j-#{$justified_content}
-		justify-content: #{$justified_content}
+// All justify-content classes
+@each $value in $justify_content
+	.justify-#{$value}
+		justify-content: #{$value}
 
+// Table classes
 table, .table
 	display: table
 
-	> tr, > .row
+	> tr, > .tr, > .row
 		display: table-row
 
-		> th, > td, > .header, > .cell
+		> th, > td, > .th, > .td, > .header, > .cell
 			display: table-cell
